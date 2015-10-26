@@ -19,7 +19,7 @@ def read_space_objects_data_from_file(input_filename):
             if len(line.strip()) == 0 or line[0] == '#':
                 continue  # пустые строки и строки-комментарии пропускаем
             object_type = line.split()[0].lower()
-            if object_type == "star":  # FIXME: do the same for planet
+            if object_type == "star":  # FIXed
                 star = Star()
                 parse_star_parameters(line, star)
                 objects.append(star)
@@ -48,18 +48,18 @@ def parse_star_parameters(line, star):
     **star** — объект звезды.
     """
 
-    Star.r = float(line.split()[1].lower())
-    Star.color = line.split()[2].lower()
-    Star.m  = float(line.split()[3].lower())
-    Star.x = float(line.split()[4].lower())
-    Star.y = float(line.split()[5].lower())
-    Star.Vx = float(line.split()[6].lower())
-    Star.Vy = float(line.split()[7].lower())
+    star.R = float(line.split()[1].lower())
+    star.color = line.split()[2].lower()
+    star.m  = float(line.split()[3].lower())
+    star.x = float(line.split()[4].lower())
+    star.y = float(line.split()[5].lower())
+    star.Vx = float(line.split()[6].lower())
+    star.Vy = float(line.split()[7].lower())
 
 
-     # FIXME: not done yet
+     # FIXed
 
-def parse_planet_parameters(line, planet):
+def parse_planet_parameters(line, Planet):
     """Считывает данные о планете из строки.
     Предполагается такая строка:
     Входная строка должна иметь слеюущий формат:
@@ -81,7 +81,7 @@ def parse_planet_parameters(line, planet):
     Planet.y = float(line.split()[5].lower())
     Planet.Vx = float(line.split()[6].lower())
     Planet.Vy = float(line.split()[7].lower())
-      # FIXME: not done yet...
+      # FIXED
 
 
 def write_space_objects_data_to_file(output_filename, space_objects):
@@ -97,7 +97,7 @@ def write_space_objects_data_to_file(output_filename, space_objects):
     """
     with open(output_filename, 'w') as out_file:
         for obj in space_objects:
-            print(out_file, "%s %d %s %f %f %f %f %f" % (object_type, obj.r, obj.color, obj.m,obj.x ,obj.y , obj.Vx, obj.Vy))
+            print(out_file, "%s %d %s %f %f %f %f %f" % (object_type, obj.R, obj.color, obj.m,obj.x ,obj.y , obj.Vx, obj.Vy))
             # FIXME: should store real values
 
 # FIXME: хорошо бы ещё сделать функцию, сохранающую статистику в заданный файл...
